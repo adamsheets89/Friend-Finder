@@ -1,20 +1,24 @@
-var path = require("path");
-var friends = require("./App/Data/friends.js");
+//require friends.js
+var friendsData = require("../Data/friends.js");
 
 // A GET route with the url /api/friends. This will be used to display a JSON of all possible friends.
 
-var API = function (app) {
+var getAPI = function (app) {
     app.get("/api/friends", function (req, res) {
-        res.JSON(friends)
+        res.json(friendsData)
     })
 };
 
-// A POST routes /api/friends. This will be used to handle incoming survey results. This route will also be used to handle the compatibility logic.
-
-var post = app.post("/api/friends", function (req, res) {
-
-});
+var postAPI = function (app) {
+    app.post("/api/friends", function (req, res) {
+        console.log(req.body);
+        var newFriend = req.body
+        friendsData.push(req.body)
+        res.json(true)
+    })
+};
 
 module.exports = {
-    API : API,
+    getAPI: getAPI,
+    postAPI: postAPI
 };

@@ -26,7 +26,7 @@
         </h3>
         <h4>Your favorite rolling stones record changes on a weekly basis.</h4>
         <select class="chosen-select" id="questionOne">
-            <option value>Select an Option</option>
+            <option value>--Select an Option--</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -38,7 +38,7 @@
         </h3>
         <h4>Warm and sunny weather dramatically improve your mood.</h4>
         <select class="chosen-select" id="questionTwo">
-            <option value>Select an Option</option>
+            <option value>--Select an Option--</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -50,7 +50,7 @@
         </h3>
         <h4>George Harrison is your favorite Beatle.</h4>
         <select class="chosen-select" id="questionThree">
-            <option value>Select an Option</option>
+            <option value>--Select an Option--</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -62,7 +62,7 @@
         </h3>
         <h4>You prefer to live in a city over small town.</h4>
         <select class="chosen-select" id="questionFour">
-            <option value>Select an Option</option>
+            <option value>--Select an Option--</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -74,7 +74,7 @@
         </h3>
         <h4>You agree with the phrase "You can never have too much of a good thing"?</h4>
         <select class="chosen-select" id="questionFive">
-            <option value>Select an Option</option>
+            <option value>--Select an Option--</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -86,7 +86,7 @@
         </h3>
         <h4>Puns are always appropriate.</h4>
         <select class="chosen-select" id="questionSix">
-            <option value>Select an Option</option>
+            <option value>--Select an Option--</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -98,7 +98,7 @@
         </h3>
         <h4>When you finish a show/series/movie on netflix, you are most likely to rewatch The Office.</h4>
         <select class="chosen-select" id="questionSeven">
-            <option value>Select an Option</option>
+            <option value>--Select an Option--</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -110,7 +110,7 @@
         </h3>
         <h4>You love cats.</h4>
         <select class="chosen-select" id="questionEight">
-            <option value>Select an Option</option>
+            <option value>--Select an Option--</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -122,7 +122,7 @@
         </h3>
         <h4>Chicago sports are a part of your life, regardles of you wanting them or not.</h4>
         <select class="chosen-select" id="questionNine">
-            <option value>Select an Option</option>
+            <option value>--Select an Option--</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -134,7 +134,7 @@
         </h3>
         <h4>Our country has a very serious gun problem.</h4>
         <select class="chosen-select" id="questionTen">
-            <option value>Select an Option</option>
+            <option value>--Select an Option--</option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -156,41 +156,6 @@
         </footer>
     </div>
     <script type="text/javascript">
-
-        var friends = [
-            {
-                "name": "Mary",
-                "photo": "http://www.brostrick.com/wp-content/uploads/2017/03/o-THERES-SOMETHING-ABOUT-MARY-facebook.jpg",
-                "scores": [
-                    5,
-                    1,
-                    4,
-                    4,
-                    5,
-                    1,
-                    2,
-                    5,
-                    4,
-                    1
-                ]
-            },
-            {
-                "name": "Jim",
-                "photo": "http://spectrumculture.com/wp-content/uploads/2013/03/cableguy.jpg",
-                "scores": [
-                    5,
-                    3,
-                    1,
-                    1,
-                    5,
-                    4,
-                    2,
-                    5,
-                    3,
-                    1
-                ]
-            },
-        ]
         $("#submit").on("click", function (event) {
             event.preventDefault();
             var answerOne = $("#questionOne").val();
@@ -208,10 +173,16 @@
                 photo: $("#photo").val(),
                 scores: [answerOne, answerTwo, answerThree, answerFour, answerFive, answerSix, answerSeven, answerEight, answerNine, answerTen]
             };
-            var results = JSON.stringify(newFriend)
-            console.log(results);
+            console.log(JSON.stringify(newFriend));
 
-            friends.push(newFriend)
+            $.post("/api/friends", newFriend,
+                function (data) {
+                });
+
+            $("#name").val("");
+            $("#photo").val("");
+            $(".chosen-select").val("");
+
         });
     </script>
 
