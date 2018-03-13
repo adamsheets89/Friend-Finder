@@ -1,0 +1,27 @@
+{
+  "name": "Friend-Finder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamsheets89/Friend-Finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamsheets89/Friend-Finder/issues"
+  },
+  "homepage": "https://github.com/adamsheets89/Friend-Finder#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "jquery": "^3.3.1",
+    "jsdom": "^11.6.2",
+    "modules": "^0.4.0"
+  }
+}
