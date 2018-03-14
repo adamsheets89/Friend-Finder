@@ -7,9 +7,31 @@
         crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>FriendFinder</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <!-- Modal -->
+    <div class="modal-fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Your new friend!</h2>
+                    <!-- modal content  -->
+
+                    <div class="modal-body">
+                        <div>
+                            <h4 id="friend-name"></h4>
+                        </div>
+                        <img class="image" id="friend-photo">
+                        <br>
+                        <button type="button" class="btn btn-default" id="start-over" data-dimiss="modal">Ok!</button>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <h2>Survey Questions</h2>
         <hr>
@@ -171,7 +193,7 @@
             var answersArray = [parseInt(answerOne), parseInt(answerTwo), parseInt(answerThree), parseInt(answerFour), parseInt(answerFive), parseInt(answerSix), parseInt(answerSeven), parseInt(answerEight), parseInt(answerNine), parseInt(answerTen)];
 
             console.log(answersArray);
-       
+
 
             var newFriend = {
                 name: $("#name").val(),
@@ -181,17 +203,25 @@
 
 
             console.log(JSON.stringify(newFriend));
-            
+
             //ajax call to api
             $.post("/api/friends", newFriend,
                 function (data) {
+                    console.log(data.name, data.photo);
+                    $("#myModal").show();
+                    $("#friend-name").text(data.name);
+                    $("#friend-photo").attr("src", data.photo)
                 });
+        });
 
-            //reset form
+        $("#start-over").on("click", function (event) {
+            $("#myModal").hide();
             $("#name").val("");
             $("#photo").val("");
             $(".chosen-select").val("");
         });
+
+
     </script>
 
 </body>

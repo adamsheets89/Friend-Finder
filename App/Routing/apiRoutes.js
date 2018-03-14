@@ -51,7 +51,7 @@ var postAPI = function (app) {
         console.log(yourMatchObj);
         
         friendsData.push(newFriend)
-        res.json(true)
+        res.json(yourMatchObj)
 
 
     })
