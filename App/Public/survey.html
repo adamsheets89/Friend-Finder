@@ -72,7 +72,7 @@
         <h3>
             <strong>Question 5</strong>
         </h3>
-        <h4>You agree with the phrase "You can never have too much of a good thing"?</h4>
+        <h4>You agree with the phrase "You can never have too much of a good thing".</h4>
         <select class="chosen-select" id="questionFive">
             <option value>--Select an Option--</option>
             <option value="1">1 (Strongly Disagree)</option>
@@ -168,21 +168,29 @@
             var answerEight = $("#questionEight").val();
             var answerNine = $("#questionNine").val();
             var answerTen = $("#questionTen").val();
+            var answersArray = [parseInt(answerOne), parseInt(answerTwo), parseInt(answerThree), parseInt(answerFour), parseInt(answerFive), parseInt(answerSix), parseInt(answerSeven), parseInt(answerEight), parseInt(answerNine), parseInt(answerTen)];
+
+            console.log(answersArray);
+       
+
             var newFriend = {
                 name: $("#name").val(),
                 photo: $("#photo").val(),
-                scores: [answerOne, answerTwo, answerThree, answerFour, answerFive, answerSix, answerSeven, answerEight, answerNine, answerTen]
+                scores: answersArray
             };
-            console.log(JSON.stringify(newFriend));
 
+
+            console.log(JSON.stringify(newFriend));
+            
+            //ajax call to api
             $.post("/api/friends", newFriend,
                 function (data) {
                 });
 
+            //reset form
             $("#name").val("");
             $("#photo").val("");
             $(".chosen-select").val("");
-
         });
     </script>
 
